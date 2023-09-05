@@ -20,8 +20,54 @@
 }
 
 .task{
-  width: 300px;
-  padding: 10px;
-  border-bottom: 2px solid;
-  outline: none;
+  display: flex;
+  align-items: center;
+  width: 345px;
+  justify-content: space-between;
+  background-color: black;
+  color: rgb(255, 255, 255);
+  height: 35px;
+  padding: 2px 5px 2px 5px;
+  margin-top: 20px;
+  text-transform: capitalize;
+}
+
+.checkbox{
+  display: flex;
+  align-items: center;
+}
+
+.checkbox .icon{
+  margin-right: 5px;
+  font-size: 1px;
+  color: green;
+  background-color: rgb(230, 223, 220);
+  border-radius: 0;
+  border: none;
+  height: 0px;
+  width: 0px;  
+}
+
+.checkbox .icon:hover{
+  background-color: white;
+}
+
+.task div span{
+  margin: 0px 5px  0px 4px
+}
+
+.task div .icon2{
+  cursor: pointer;
+  margin-right: 5px;
+  font-size: 1px;
+  background-color: rgb(230, 223, 220);
+  border-radius: 0;
+  border: none;
+  height: 0px;
+  width: 0px; 
+  color: red;
+}
+
+.line_through{
+  text-decoration: line-through;
 }
