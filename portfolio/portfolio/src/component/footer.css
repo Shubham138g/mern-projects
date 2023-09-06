@@ -1,0 +1,10 @@
+
+:root {
+    --cyan: #00ffff;
+    --gray: rgb(173, 173, 170);
+  }
+  
+p{
+    color: var(--gray);
+    font-size: 13px;
+}
