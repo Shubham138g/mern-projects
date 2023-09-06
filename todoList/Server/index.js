@@ -13,6 +13,10 @@ app.use(express.json());
 const MONGO_URL = `mongodb+srv://tonygupta275:zoAcRqDwTeldGSC2@cluster0.6efrmtj.mongodb.net/test?retryWrites=true&w=majority`
 
 mongoose.connect(MONGO_URL)
+.then(result => console.log("database connected successfull"))
+.catch(err => console.log("error while connecting to the database",err))
+
+
 
 app.get('/get',(req,res)=>{
     ToDoModel.find()

@@ -29,28 +29,28 @@ const Home = () => {
   return (
     <>
       <div className="home">
-        <h2>ToDoList</h2>
+        <h2 className="todo_title">ToDoList</h2>
         <Create />
         {todos.length === 0 ? (
           <div className="">
-            <h2>No Records</h2>
+            <h2 style={{color:"red"}}>No Records</h2>
           </div>
         ) : (
           todos.map((todo) => (
-            <div className="task">
-              <div className="checkbox" onClick={()=>handleEdit(todo._id)}>
+            <div className="task ">
+              <div className="checkbox " onClick={()=>handleEdit(todo._id)}>
                 {
                   todo.done
                    ?
-                   <CheckBoxIcon className=""/>
+                   <CheckBoxIcon className="completd_icon checkbox_margin"/>
                    :
-                   <CheckBoxOutlineBlankIcon className="" />
+                   <CheckBoxOutlineBlankIcon className="tick" />
   
                 }
                 <p className={todo.done ? "line_through" : ""}>{todo.task}</p>
               </div>
               <div>
-                <span> <DeleteOutlineIcon className="" onClick={()=>handleDelete(todo._id)} /></span>
+                <span> <DeleteOutlineIcon className="delete_icon" onClick={()=>handleDelete(todo._id)} /></span>
               </div>
             </div>
           ))

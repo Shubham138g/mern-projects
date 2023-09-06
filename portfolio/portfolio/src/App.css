@@ -1,0 +1,26 @@
+:root{
+  --cyan: #00ffff;
+  --gray: rgb(173,173,170);
+}
+
+.navbar-brand{
+  font-size: 20px !important;
+  font-weight: bolder;
+  font-family:'Times New Roman', Times, serif;
+  color: cyan !important;
+}
+
+#navbarSupportedContent ul li a{
+  font-size: 13px;
+  color: gray;
+}
+
+#navbarSupportedContent ul li a span{
+  color: cyan;
+}
+
+#navbarSupportedContent ul li button{
+  color: cyan;
+  border: 1px solid cyan;
+  border-radius: 3px;
+}

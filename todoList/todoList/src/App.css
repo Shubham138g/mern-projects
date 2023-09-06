@@ -4,10 +4,14 @@
   align-items: center;
 }
 
+.todo_title{
+  font-size: 50px;
+}
 
 .creare_form input{
   width: 300px;
   padding: 10px;
+  border-radius: 50px;
   border-bottom: 2px solid;
   outline: none;
 }
@@ -15,8 +19,15 @@
 .creare_form button{
   padding: 10px;
   background-color: black;
+  border-radius: 50px;
   color: white;
+  margin-left: 5px;
   cursor: pointer;
+  width: 80px;
+}
+.creare_form button:hover{
+  background-color: #3bec24;
+  color: black;
 }
 
 .task{
@@ -30,6 +41,11 @@
   padding: 2px 5px 2px 5px;
   margin-top: 20px;
   text-transform: capitalize;
+  border-radius: 150px;
+}
+
+.checkbox_margin{
+  margin-left: 7px;
 }
 
 .checkbox{
@@ -52,6 +68,13 @@
   background-color: white;
 }
 
+.checkbox .tick:hover{
+  color: #5adbb5;
+}
+.checkbox .completd_icon{
+  color: #24ec70;
+}
+
 .task div span{
   margin: 0px 5px  0px 4px
 }
@@ -70,4 +93,8 @@
 
 .line_through{
   text-decoration: line-through;
+}
+
+.delete_icon:hover{
+  color: red;
 }
