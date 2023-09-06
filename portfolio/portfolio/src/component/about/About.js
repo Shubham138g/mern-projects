@@ -27,7 +27,7 @@ const About = () => {
                     </div>
                 </div>
                 <div className='about_img'>
-                    <img src='./images/about.svg' alt="no_image" />
+                    <img src='/images/about2.svg' alt="no_image" />
                 </div>
             </div>
 
