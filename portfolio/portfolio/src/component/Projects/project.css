@@ -40,3 +40,8 @@
     background-color: var(--gray) !important;
     color: var(--cyan);
   }
+
+  .project_img{
+    height: 200px;
+    image-rendering: auto;
+  }

@@ -4,7 +4,9 @@
 }
 
 
-
+.about{
+    height: 350px;
+}
 .about_txt h3{
     color:  white;
     font-size: 45px;
@@ -29,3 +31,12 @@
     color: var(--cyan);
 }
 
+.about .wrapper{
+    margin-left: 76px;
+}
+
+.about_img img {
+    height: 550px;
+    width: 570px;
+    padding-bottom: 150px;
+}

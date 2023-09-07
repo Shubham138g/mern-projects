@@ -20,22 +20,24 @@ const About = () => {
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur iure sed quisquam modi quibusdam corporis
                             facilis asperiores, doloremque quo accusamus atque, quidem facere. At similique, ex amet laudantium,
                             dolores modi magni consequuntur. Odio repellat doloribus fugit titaque repudiandae expedita vitae!</p>
-                    </div>
-                    <div className="row technology">
-                        <div className="col-6">
-                            <p><span>➩</span>React JS</p>
-                            <p><span>➩</span>Expree JS</p>
-                            <p><span>➩</span>Node JS</p>
-                        </div>
-                        <div className="col-6">
-                            <p><span>➩</span>Bootstrap</p>
-                            <p><span>➩</span>HTML</p>
-                            <p><span>➩</span>CSS</p>
+
+                        <div className="row technology">
+                            <div className="col-6">
+                                <p><span>➩</span>React JS</p>
+                                <p><span>➩</span>Expree JS</p>
+                                <p><span>➩</span>Node JS</p>
+                            </div>
+                            <div className="col-6">
+                                <p><span>➩</span>Bootstrap</p>
+                                <p><span>➩</span>HTML</p>
+                                <p><span>➩</span>CSS</p>
+                            </div>
                         </div>
                     </div>
                     <div className='about_img col-12 col-md-6 col-lg-6 d-flex justify-content-center align-items-center' data-aos='fade-left'>
                         <img src='/images/about2.svg' alt="no_image" />
                     </div>
+
                 </div>
             </div>
         </div>

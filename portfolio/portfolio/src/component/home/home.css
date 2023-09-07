@@ -61,13 +61,13 @@ main h1{
 }
 
 main h2{
-    font-size: 50px;
-    color: var(--cyan);
+    /* font-size: 50px; */
+    color: var(--gray);
     font-size: 5vw;
 }
 
 main .details{
-    color: var(--cyan);
+    color: var(--gray);
     margin-top: 10px;
 }
 
