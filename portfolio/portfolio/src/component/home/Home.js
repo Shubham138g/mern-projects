@@ -28,7 +28,7 @@ const Home = () => {
                             autoStart: true,
                             loop: true,
                             delay: 180,
-                            strings: ["i build things for the web.", "i am a web developer"]
+                            strings: ["I am a full stack developer .", "I build things for the web"]
                         }} />
                 </h2>
                 <p className='details'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem cupiditate doloribus cum dolorum incidunt rem dignissimos. <br />
