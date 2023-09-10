@@ -44,13 +44,16 @@ app.post('/login', async (req, res) => {
         //logged in
         jwt.sign({ username, id:userDoc._id }, secret, {}, (err, token) => {
             if (err) throw err;
-            res.cookie('token',token).json('ok');
+            res.cookie('token',token).json({
+                id:userDoc._id,
+                username,
+            });
         })
     }
     else {
         res.status(400).send("wrong credentional");
     }
-})
+});
 
 app.get('/profile',(req,res)=>{
     const {token} =req.cookies;
@@ -59,6 +62,10 @@ app.get('/profile',(req,res)=>{
         res.json(info);
     });
     res.json(req.cookies);
+})
+
+app.post('/logout',(req,res)=>{
+    res.cookie('token','').json("ok")
 })
 
 app.listen("4000", () => {
