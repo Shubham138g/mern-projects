@@ -114,6 +114,10 @@ app.get('/post',async(req,res)=>{
     );
 })
 
+app.get('/post/:id',(req,res)=>{
+    res.json(req.params);
+})
+
 
 //listen 
 app.listen("4000", () => {
