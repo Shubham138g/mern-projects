@@ -8,6 +8,9 @@ import jwt from 'jsonwebtoken';
 import cookieParser from 'cookie-parser';
 import multer from 'multer';
 import fs from 'fs';
+import { dirname } from 'path';
+const __dirname = dirname('uploads')
+
 
 const uploadMiddleware = multer({ dest: 'uploads/' });
 
@@ -23,6 +26,8 @@ mongoose.connect(MONGO_URL);
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(express.json());
 app.use(cookieParser());
+// app.use(express.static(__dirname));
+app.use('/uploads',express.static(__dirname +'/uploads'));
 
 
 
@@ -81,20 +86,32 @@ app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
     const newPath = path + '.' + ext;
     fs.renameSync(path, newPath);
 
-    const { title, summary, content } = req.body;
+    const { token } = req.cookies;
+    jwt.verify(token, secret, {},async (err, info) => {
+        if (err) throw err;
+        const { title, summary, content } = req.body;
+        const postDoc= await PostModel.create({
+            title,
+            summary,
+            content,
+            cover: newPath,
+            author:info.id,
+        });
+        res.json(postDoc);
+        
+    });
 
-   const postDoc= await PostModel.create({
-        title,
-        summary,
-        content,
-        cover: newPath,
-    })
-    res.json(postDoc);
+
+  
 });
 
 
 app.get('/post',async(req,res)=>{
-    res.json(await PostModel.find());
+    res.json(await PostModel.find()
+    .populate('author',['username'])
+    .sort({createdAt:-1})
+    .limit(20)
+    );
 })
 
 
