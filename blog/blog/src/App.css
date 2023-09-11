@@ -48,12 +48,19 @@ div.post div.text h2{
   font-size: 1.8rem;
 }
 
+div.post div.text a{
+  text-decoration: none;
+  color: inherit;
+  text-transform: capitalize;
+}
+
 div.post p.info{
   margin: 6px 0;
   color: #888;
   font-size: .7rem;
   font-weight: bold;
   display: flex;
+  text-transform: capitalize;
   gap: 10px;
 }
 
@@ -65,6 +72,7 @@ div.post p.info a.author{
 div.post  p.summary{
   margin: 10px 0;
   line-height: 1.4rem;
+  text-transform: capitalize;
 }
 
 form.login,form.register{
