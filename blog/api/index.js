@@ -115,25 +115,73 @@ app.put('/post', uploadMiddleware.single('file'), async(req, res) => {
     }
 
     const { token } = req.cookies;
-    jwt.verify(token, secret, {}, async (err, info) => {
-        if (err) throw err;
-        const {id, title, summary, content } = req.body;
-        const postDoc= await PostModel.findById(id);
-        const isAuthor= JSON.stringify(postDoc.author) === JSON.stringify(info.id);
-        res.json({isAuthor});
+    // jwt.verify(token, secret, {}, async (err, info) => {
 
-        if(!isAuthor){
-            return res.status(400).json('you are not the author');
+    //     if (err) throw err;
+    //     const {id, title, summary, content } = req.body;
+    //     const postDoc= await PostModel.findById(id);
+    //     const isAuthor= JSON.stringify(postDoc.author) === JSON.stringify(info.id);
+    //     res.json({isAuthor});
+
+    //     if(!isAuthor){
+    //         return res.status(400).json('you are not the author');
+    //     }
+
+    //   await  postDoc.updateOne({
+    //         title,
+    //         summary,
+    //         content,
+    //         cover:newPath? newPath:postDoc.cover,
+    //     });   
+    //     res.json(postDoc);
+    // });
+
+    jwt.verify(token, secret, {}, async (err, info) => {
+        if (err) {
+            return res.status(401).json("Invalid token"); // Handle invalid token
         }
-        
-      await  postDoc.update({
-            title,
-            summary,
-            content,
-            cover:newPath? newPath:postDoc.cover,
-        });
-       
-        res.json(postDoc);
+    
+        const { id, title, summary, content } = req.body;
+    
+        try {
+            const post = await PostModel.findById(id);
+            console.log(post);
+            if (!post) {
+                return res.status(404).json("Post not found");
+            }
+    
+            const isAuthor = JSON.stringify(post.author) === JSON.stringify(info.id);
+
+            if (!isAuthor) {
+                return res.status(400).json("You are not the author of this post");
+            }
+    
+            // Define the update object with the fields to be updated
+            const update = {
+                title,
+                summary,
+                content,
+                cover: newPath ? newPath : post.cover,
+            };
+    
+            // Use the update method to update the post
+            const updatedPost = await PostModel.updateOne({ _id: id }, update);
+    
+    
+            console.log(updatedPost);
+    
+            if (updatedPost.modifiedCount === 1) {
+                // The update was successful
+                // Fetch the updated post document
+                const updatedPostDoc = await PostModel.findById(id);
+                res.json(updatedPostDoc);
+            } else {
+                return res.status(500).json("Failed to update post");
+            }
+        } catch (error) {
+            console.error(error);
+            return res.status(500).json({ error: "Internal server error" });
+        }
     });
 });
 
