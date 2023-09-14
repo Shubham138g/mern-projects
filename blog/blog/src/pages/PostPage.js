@@ -37,9 +37,6 @@ const PostPage = () => {
             <div className="content" dangerouslySetInnerHTML={{ __html: postInfo.content }} />
 
         </div>
-
-
-
     );
 }
 
