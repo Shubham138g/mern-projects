@@ -29,7 +29,6 @@ app.post("/register", async(req, res) => {
         console.error(error);
         res.status(400).json({ message: 'server error' });
     }
-
 })
 
 

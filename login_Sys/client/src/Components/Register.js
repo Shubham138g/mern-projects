@@ -20,8 +20,8 @@ const Register = () => {
       const response = await axios.post('/register', user);
       console.log(response.data.message);
     } catch (error) {
-      // console.log(`error while calling axios ${error}`);
-      console.log('axios calling error',error.response.data.message);
+      console.log(` ${error}`);
+      // console.log('axios calling error',error.response.data.message);
 
     }
   }
