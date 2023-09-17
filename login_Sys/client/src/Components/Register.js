@@ -10,6 +10,7 @@ const Register = () => {
   const registerEvent = (e) => {
     // console.log(e.target.name,":",e.target.value);
     setuser({ ...user, [e.target.name]: e.target.value });
+
   }
   // console.log(user);
 
@@ -17,8 +18,12 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('/register', user);
+      const response = await axios.post('http://localhost:4000/register', user);
       console.log(response.data.message);
+      setuser({
+        username: '',
+        password: '',
+      })
     } catch (error) {
       console.log(` ${error}`);
       // console.log('axios calling error',error.response.data.message);
@@ -38,7 +43,7 @@ const Register = () => {
               value={user.username}
               onChange={registerEvent}
             /><br />
-            
+
             <input type="password"
               name='password'
               placeholder='password'
