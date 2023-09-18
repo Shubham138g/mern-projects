@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const Login = () => {
@@ -7,25 +8,37 @@ const Login = () => {
     username: '',
     password: '',
   });
+  const [token, setToken] = useState('');
+  const navigate = useNavigate();
   const loginChange = (e) => {
     setuser({ ...user, [e.target.name]: e.target.value })
     // console.log(e.target.value);
   };
 
-  const loginSubmit = async(e) => {
+  const loginSubmit = async (e) => {
     e.preventDefault();
-    
+
     try {
       const response = await axios.post('http://localhost:4000/login', user);
       console.log(response.data.message);
-      
+      setToken(response.data.token);
+
+      alert("Login Successfull");
+
+      // if(token){
+      //   navigate('/');
+      // }
+      // else{
+      //   navigate('/register');
+      // }
+
       setuser({
         username: '',
         password: '',
       })
-      
+
     } catch (error) {
-      console.log('error while calling loging axios',error);
+      console.log('error while calling loging axios', error);
     }
   }
 
@@ -49,7 +62,8 @@ const Login = () => {
             /><br />
             <button className='login_button'>Login</button>
           </form>
-        </div>
+        </div><br/>
+        {/* {token && <p>Token: {token}</p>} */}
       </div>
 
     </>

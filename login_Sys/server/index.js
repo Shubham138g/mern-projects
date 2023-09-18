@@ -5,13 +5,15 @@ import dotenv from 'dotenv';
 import UserModel from './models/User.js'
 import bodyParser from 'body-parser';
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
 const app = express();
 dotenv.config();
 const PORTs = process.env.PORT;
 conn();//database connection function calling
 
-const salt = bcrypt.genSaltSync(10);
+const salt = bcrypt.genSaltSync(10);//bcryptjs 
+const secret = 'efeinfefiw23724y@^Gc7dny7v@^';//jwt secret key
 
 
 app.use(express.json());
@@ -35,27 +37,34 @@ app.post("/register", async (req, res) => {
     }
 })
 
-app.post('/login',async (req, res) => {
+
+//login route
+
+app.post('/login', async (req, res) => {
     try {
         const { username, password } = req.body;
-
-        const findUser =await  UserModel.findOne({ username });
+        const findUser = await UserModel.findOne({ username });
         if (!findUser) {
             res.status(400).json({ message: 'user not found' });
         }
-        
-        
-        const passwordMatch= await bcrypt.compareSync(password,findUser.password);
-        if(!passwordMatch){
-            res.status(400).json({message:"invalid password"});
+
+
+        const passwordMatch = await bcrypt.compareSync(password, findUser.password);
+        if (!passwordMatch) {
+            res.status(400).json({ message: "invalid password" });
         }
 
-       return res.status(200).json({message:"login successfull"});
+        const token = jwt.sign({ findUser: findUser._id }, secret, {
+            expiresIn: '1h',
+        });
+        res.status(200).json({ token });
+
+        return res.status(200).json({ message: "login successfull" });
 
     } catch (error) {
 
         console.log(error);
-        res.status(500).json({message:'server error in login section'});
+        res.status(500).json({ message: 'server error in login section' });
 
     }
 

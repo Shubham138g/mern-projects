@@ -24,6 +24,7 @@ const Register = () => {
         username: '',
         password: '',
       })
+      alert("User Registered");
     } catch (error) {
       console.log(` ${error}`);
       // console.log('axios calling error',error.response.data.message);
