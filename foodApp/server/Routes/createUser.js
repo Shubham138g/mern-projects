@@ -4,6 +4,9 @@ import UserModel from '../models/User.js';
 const router =express.Router();
 
 
+
+
+
  const createuser=router.post('/createuser',async(req,res)=>{
     try {
         UserModel.create({
