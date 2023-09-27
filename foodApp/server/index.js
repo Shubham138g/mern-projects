@@ -1,12 +1,14 @@
 import express from 'express';
 import conn from '../server/db.js';
-import createuser from '../server/Routes/createUser.js'
+import createuser from '../server/Routes/createUser.js';
+import cors from 'cors';
 
 const app=express();
 const port=4000;
 conn();
 
 app.use(express.json());
+app.use(cors());
 
 
 app.use('/api',createuser )
