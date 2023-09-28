@@ -23,7 +23,7 @@ const Signup = () => {
         console.log(json);
 
         if(!json.success){
-            alert("enter valid data");
+            alert("Enter Valid Data");
         }
     }
 
