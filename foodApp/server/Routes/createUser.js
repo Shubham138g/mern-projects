@@ -5,9 +5,9 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 const router = express.Router();
-const jwtSecret="mynameisshubhamguptaandiamastudent";
+const jwtSecret = "mynameisshubhamguptaandiamastudent";
 
- router.post('/createuser',
+router.post('/createuser',
     [
         body('email').isEmail(),
         body('password').isLength({ min: 4 }),
@@ -15,13 +15,13 @@ const jwtSecret="mynameisshubhamguptaandiamastudent";
         body('location').isLength({ min: 4 }),
     ],
     async (req, res) => {
-        const errors=validationResult(req);
-        if(!errors.isEmpty()){
-            return res.status(400).json({errors:errors.array()});
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
         }
 
-        const salt= await bcrypt.genSalt(10);
-        let secPassword= await bcrypt.hash(req.body.password,salt);
+        const salt = await bcrypt.genSalt(10);
+        let secPassword = await bcrypt.hash(req.body.password, salt);
 
         try {
             UserModel.create({
@@ -37,33 +37,33 @@ const jwtSecret="mynameisshubhamguptaandiamastudent";
         }
 
     });
- router.post('/loginuser',
- [
-    body('email').isEmail(),
-    body('password').isLength({ min: 4 }),
-    body('name').isLength({ min: 4 }),
-    body('location').isLength({ min: 4 }),
-], async (req, res) => {
-        const email=req.body.email;
+router.post('/loginuser',
+    [
+        body('email').isEmail(),
+        body('password').isLength({ min: 4 }),
+        body('name').isLength({ min: 4 }),
+        body('location').isLength({ min: 4 }),
+    ], async (req, res) => {
+        const email = req.body.email;
         try {
-            const userData=await UserModel.findOne({email});
-            if(!userData){
-                return res.status(400).json({errors:"try loging with correct credentials"});
+            const userData = await UserModel.findOne({ email });
+            if (!userData) {
+                return res.status(400).json({ errors: "try loging with correct credentials" });
             }
 
-            const passwordCompare= await bcrypt.compare(req.body.password,userData.password)
+            const passwordCompare = await bcrypt.compare(req.body.password, userData.password)
 
-            if(!passwordCompare){
-                return res.status(400).json({errors:"try loging with correct credentials"});
+            if (!passwordCompare) {
+                return res.status(400).json({ errors: "try loging with correct credentials" });
             }
-            const data={
-                user:{
-                    id:userData.id
+            const data = {
+                user: {
+                    id: userData.id
                 }
             }
-            const authtoken=jwt.sign(data,jwtSecret);
-                return res.json({success:true,authtoken:authtoken})
-           
+            const authtoken = jwt.sign(data, jwtSecret);
+            return res.json({ success: true, authtoken: authtoken })
+
         } catch (error) {
             console.log(error);
             res.json({ success: false });
@@ -71,6 +71,6 @@ const jwtSecret="mynameisshubhamguptaandiamastudent";
 
     });
 
-    
+
 
 export default router;
