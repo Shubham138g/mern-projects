@@ -20,7 +20,8 @@ const Card = (props) => {
       }
     }
     if(food !==[]){
-    if(!food.size===size){
+      // console.log(food);
+    if(food.size===size){
       await dispatch({type:"UPDATE",id:props.foodItem._id,price:finalPrice,qty:qty})
       return
     }
