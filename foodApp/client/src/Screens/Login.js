@@ -24,6 +24,7 @@ const navigate=useNavigate();
             alert("Enter Valid Credentials");
         }
         if(json.success){
+            localStorage.setItem("userEmail",credential.email);
             localStorage.setItem("authtoken",json.authtoken);
             console.log(localStorage.getItem("authtoken"));
             navigate('/');

@@ -11,7 +11,7 @@ const reducer = (state, action) => {
             let newArr = [...state]
             newArr.splice(action.index, 1)
             return newArr;
-            case "UPDATE":
+           
             //     let arr=[...state]
             //     arr.find((food,index)=>{
             //         console.log(food.id,action.id);
@@ -26,6 +26,7 @@ const reducer = (state, action) => {
             //         return arr
             //     })
             //     return arr
+            case "UPDATE":
             return state.map((food) => {
                 if (food.id === action.id) {
                     return {
@@ -37,6 +38,9 @@ const reducer = (state, action) => {
                     return food; // Keep the item as it is
                 }
             });
+            case "DROP":
+                let empArr=[]
+                return empArr
         default:
             console.log("Error in reducer");
     }

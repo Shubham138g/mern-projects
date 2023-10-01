@@ -12,6 +12,28 @@ const Cart = () => {
             </div>
         )
     }
+
+    const handleChechkOut =async () => {
+        const userEmail = localStorage.getItem("userEmail");
+        console.log(userEmail);
+        const respoonse= await fetch('http://localhost:4000/api/orderData', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                order_data:data,
+                email:userEmail,
+                order_date:new Date().toDateString()
+            })
+        });
+        console.log(respoonse);
+
+        if(respoonse.status===200){
+            dispatch({type:"DROP"})
+        }
+    }
+
     let totalPrice = data.reduce((total, food) => total + food.price, 0)
     return (
         <>
@@ -42,11 +64,11 @@ const Cart = () => {
                 </table>
                 <div><h1 className='fs-2'>Total Price: {totalPrice}/-</h1></div>
                 <div>
-                    <button className='btn bg-success mt-5 ' onClick='' > Check Out </button>
+                    <button className='btn bg-success mt-5 ' onClick={handleChechkOut} > Check Out </button>
                 </div>
             </div>
 
-        
+
         </>
     );
 }

@@ -2,6 +2,7 @@ import express from 'express';
 import conn from '../server/db.js';
 import createuser from '../server/Routes/createUser.js';
 import displayData from '../server/Routes/DisplayData.js';
+import orderData from '../server/Routes/OrderData.js';
 import cors from 'cors';
 
 const app=express();
@@ -14,6 +15,7 @@ app.use(cors());
 
 app.use('/api',createuser )
 app.use('/api',displayData )
+app.use('/api',orderData )
 
 app.get("/",(req,res)=>{
     res.send('hello world');
