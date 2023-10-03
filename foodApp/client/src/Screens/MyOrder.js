@@ -45,10 +45,7 @@ const MyOrder = () => {
 
                                                                 {data = arrayData.Order_date}
                                                                 <hr />
-                                                            </div> :
-
-                                                            
-
+                                                            </div> :                                                        
                                                                 <div className='col-12 col-md-6 col-lg-3' >
                                                                     <div className="card mt-3" style={{ width: "16rem", maxHeight: "360px" }}>
                                                                         <img src={arrayData.img} className="card-img-top" alt="..." style={{ height: "120px", objectFit: "fill" }} />
