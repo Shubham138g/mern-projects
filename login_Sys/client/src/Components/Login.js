@@ -22,8 +22,12 @@ const Login = () => {
       const response = await axios.post('http://localhost:4000/login', user);
       console.log(response.data.message);
       setToken(response.data.token);
+      console.log(setToken(response.data.token));
 
-      alert("Login Successfull");
+      if (response.status === 200) {
+        alert("Login Successfull");
+      }
+
 
       // if(token){
       //   navigate('/');
@@ -31,7 +35,6 @@ const Login = () => {
       // else{
       //   navigate('/register');
       // }
-
       setuser({
         username: '',
         password: '',
@@ -39,6 +42,21 @@ const Login = () => {
 
     } catch (error) {
       console.log('error while calling loging axios', error);
+
+      if (error.response && error.response.data) {
+        const errorMessage = error.response.data.message;
+
+        if (errorMessage === 'user not found') {
+          alert('User not found. Please check your username.');
+        } else if (errorMessage === 'invalid password') {
+          alert('Invalid password. Please check your password.');
+        } else {
+          alert('An error occurred. Please try again later.');
+        }
+      } else {
+        // Handle other errors (e.g., network errors)
+        alert('An error occurred. Please try again later.');
+      }
     }
   }
 
@@ -62,7 +80,7 @@ const Login = () => {
             /><br />
             <button className='login_button'>Login</button>
           </form>
-        </div><br/>
+        </div><br />
         {/* {token && <p>Token: {token}</p>} */}
       </div>
 
