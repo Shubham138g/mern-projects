@@ -95,6 +95,9 @@ const verifyToken = (req, res, next) => {
         req.userId = decoded.findUser;
         next();
     });
+
+
+    
 };
 ///////////////////////
 app.get('/protected-route', verifyToken, (req, res) => {
